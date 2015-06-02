@@ -1,21 +1,6 @@
 <?php
 
 require 'database.php';
-
-
-function getFiles()
-{
-  global $db;
-  $query = "
-    SELECT * FROM files
-  ";
-  $stmt = $db->prepare($query);
-  $stmt->execute();
-
-  $registrations = array();
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $registrations[] = $row;
-  }
-
-  return $registrations;  
-}
+require 'file_functions.php';
+require 'html_functions.php';
+require 'user_functions.php';
