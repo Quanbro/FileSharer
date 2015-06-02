@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'database.php';
 require 'file_functions.php';
 require 'html_functions.php';

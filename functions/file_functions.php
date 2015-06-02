@@ -16,3 +16,28 @@ function getFiles()
 
   return $registrations;  
 }
+
+function addFile()
+{
+  //INSERT INTO files
+}
+
+function setFileStatus($file)
+{
+
+}
+
+function updateFileDetails()
+{
+
+}
+
+function getFileMD5()
+{
+
+}
+
+function saveFile()
+{
+	
+}
