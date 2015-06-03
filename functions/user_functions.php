@@ -12,7 +12,7 @@ function addUser($email, $password, $displayName, $force_password_change)
 	';
 
 	$stmt = $db->prepare($query);
-	$stmt->execute(array($email, $displayName, $password, $password, $force_password_change));
+	$stmt->execute(array($email, $displayName, $password,  $force_password_change));
 }
 
 function loginUser($user)
@@ -164,4 +164,7 @@ function user_exists($email){
   return $row[0] > 0;
 
 }
+
+
+
 

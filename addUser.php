@@ -1,15 +1,26 @@
 <?php
 
 require 'functions/functions.php';
+requireAdmin();
 $errors = array();
 
-$name = '';
+$email = '';
+$display_name = '';
 $password = '';
 
 
 //if the form has been submitted with method = "post"
 if (!empty($_POST)):
-   
+    $email = $_POST['email'];
+    $display_name = $_POST['displayName'];
+    $password = $_POST['password'];
+
+    $errors = checkIfEmpty($email, "email", $errors);
+    $errors = checkIfEmpty($display_name, "display name", $errors);
+    $errors = validatePassword($password, $errors);
+    if (empty($errors)):
+        addUser($email, $password, $display_name, 1);
+    endif;
 endif;
 
 ?>
