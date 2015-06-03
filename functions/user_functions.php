@@ -97,6 +97,13 @@ function requireLogin()
 		header('Location: login.php');
 		die;
 	endif;
+
+	$user = $_SESSION['user'];
+
+	if ($user['force_password_change'] == 1):
+		header('Location: changePassword.php');
+		die;
+	endif;
 }
 
 /**
