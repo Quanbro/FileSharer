@@ -5,11 +5,13 @@ function addUser()
 
 }
 
-function loginUser($usr_id)
+function loginUser($user)
 {
+	$usr_id = $user['usr_id'];
 	recordLogin($usr_id);
 	updateUserLoginTime($usr_id);
-	$_SESSION['email'] = $usr_id;
+	$_SESSION['id'] = $usr_id;
+	$_SESSION['user'] = $user;
 }
 
 function recordLogin($usr_id)
@@ -91,7 +93,7 @@ function setUserStatus()
 **/
 function requireLogin()
 {
-	if (empty($_SESSION['email'])) :
+	if (empty($_SESSION['id'])) :
 		header('Location: login.php');
 		die;
 	endif;

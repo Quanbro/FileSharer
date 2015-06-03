@@ -27,7 +27,7 @@ if (!empty($_POST)):
     $check_password = check_password_correct($_POST['email'], $_POST['password']);
     if ($check_password) :
       $user = getUserByEmail($_POST['email']);
-      loginUser($user['usr_id']);
+      loginUser($user);
 
       header('Location: index.php');
       die;
