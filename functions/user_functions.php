@@ -1,8 +1,18 @@
 <?php
 
-function addUser()
+function addUser($email, $password, $displayName, $force_password_change)
 {
+	global $db;
 
+	$query = '
+	INSERT INTO users
+	(usr_email, display_name, usr_password, force_password_change)
+	VALUES
+	(?, ?, ?, ?)
+	';
+
+	$stmt = $db->prepare($query);
+	$stmt->execute(array($email, $displayName, $password, $password, $force_password_change));
 }
 
 function loginUser($user)
