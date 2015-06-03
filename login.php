@@ -24,9 +24,11 @@ if (!empty($_POST)):
   endif;
   // if there are no errors
   if (empty($errors)) :
-    $check_password = check_password_correct($_POST['email'], md5($_POST['password']));
+    $check_password = check_password_correct($_POST['email'], $_POST['password']);
     if ($check_password) :
-      $_SESSION['email'] = $_POST['email'];
+      $user = getUserByEmail($_POST['email']);
+      loginUser($user['usr_id']);
+
       header('Location: index.php');
       die;
     else :

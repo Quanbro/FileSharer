@@ -5,9 +5,37 @@ function addUser()
 
 }
 
-function recordLogin()
+function loginUser($usr_id)
 {
+	recordLogin($usr_id);
+	updateUserLoginTime($usr_id);
+	$_SESSION['email'] = $usr_id;
+}
 
+function recordLogin($usr_id)
+{
+	global $db;
+
+	$query = '
+	INSERT INTO logins
+	(usr_id, ip)
+	VALUES
+	(?, ?)
+	';
+
+	$stmt = $db->prepare($query);
+	$stmt->execute(array($usr_id, $_SERVER['REMOTE_ADDR']));
+}
+
+function updateUserLoginTime($usr_id)
+{
+	global $db;
+	$query = '
+	UPDATE users SET usr_last_ip = ?, usr_last_login = NOW() WHERE usr_id = ?
+	';
+
+	$stmt = $db->prepare($query);
+	$stmt->execute(array($_SERVER['REMOTE_ADDR'], $usr_id));	
 }
 
 function changePassword()
@@ -15,9 +43,20 @@ function changePassword()
 
 }
 
-function getUserByLogin()
+function getUserByEmail($email)
 {
+  global $db;
+  $query = "
+  SELECT * FROM users 
+  WHERE usr_email = ?
+  ";
+  
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($email));
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  //$password = secure_password($password);
 
+  return $user;
 }
 
 /**
@@ -38,12 +77,9 @@ function check_password_correct($email, $password){
   $stmt = $db->prepare($query);
   $stmt->execute(array($email));
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
-  $password = secure_password($password);
-  
-  if ($password == $user['usr_password']){
-  	return $user['id'];
-  }
-  return false;
+  //$password = secure_password($password);
+
+  return $password == $user['usr_password'];
 }
 
 function setUserStatus()
