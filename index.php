@@ -31,6 +31,12 @@ $files = getFiles();
     </head>
 
     <body>
+    <div class="container pull-right">
+        <div class="logout pull-right">
+    		<button type="button" class="btn btn-default">Log Out</button>
+   		</div>
+    </div>
+
 
         <table id="files" class="table dataTable table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"  width="100%">
 
@@ -41,6 +47,7 @@ $files = getFiles();
 	                <th>File Name</th>
 	                <th>File Description</th>
 	                <th>File Created</th>
+	                <th>Uploaded By</th>
 
 	            </tr>
 
@@ -54,11 +61,13 @@ $files = getFiles();
             ?>
 
                 <tr>
-                	<td><?php echo $file['file_name']?></td>
+                	<td><?php echo '<a href = "/uploads/'.$file['file_name'].'">'.$file['file_name']?></a></td>
 
                 	<td><?php echo $file['file_descr']?></td>
 
                 	<td><?php echo $file['file_created']?></td>
+
+                	<td>Vern</td>
                 </tr>
 
 
@@ -112,7 +121,6 @@ $files = getFiles();
 
                 }
 
-                paginateScroll();
 
 
 
@@ -130,3 +138,4 @@ $files = getFiles();
 
 
     </body>
+</html>
