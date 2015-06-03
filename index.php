@@ -35,6 +35,10 @@ endif;
 
         <script type='text/javascript' src="//cdn.datatables.net/fixedheader/2.1.2/js/dataTables.fixedHeader.min.js"></script>
 
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <script type="text/javascript" src='js/bootstrap.min.js'></script>
+
     </head>
 
 
@@ -45,28 +49,32 @@ endif;
     	<img src="images/logo.png">
     </div>
 
-	<!-- Static navbar -->
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
-	  <div class="navbar-header">
-	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	      <span class="sr-only">Toggle navigation</span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	      <span class="icon-bar"></span>
-	    </button>
-	    <a class="navbar-brand" href="#">Downloads</a>
-	  </div>
-	  <div id="navbar" class="navbar-collapse collapse">
-	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="index.php">Home</a></li>
-	    </ul>
-	    <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
-	      <li><a href="./logout.php">Log Out</a></li>
-	    </ul>
-	  </div><!--/.nav-collapse -->
-	</div><!--/.container-fluid -->
-	</nav>
+    <nav class="navbar navbar-default" role="navigation">
+       <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" 
+             data-target="#example-navbar-collapse">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+          </button>
+          
+       </div>
+       <div class="collapse navbar-collapse" id="example-navbar-collapse">
+              <ul class="nav navbar-nav">
+              <li class="active"><a href="index.php">Home</a></li>
+              <li><a href="index.php">Submit A File</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
+              <li><a href="./changepassword.php">Change Password</a></li>
+              <li><a href="./logout.php">Log Out</a></li>
+            </ul>
+       </div>
+    </nav>
+
+
+
+
 
 	<!--
     <body>
@@ -81,9 +89,9 @@ endif;
     <?php
     if ($displayUsersUploads):
         $user = getUserByID($_GET['usr_id']);
-        echo sprintf("Displaying Uploads By %s", $user['display_name'] );
+        echo sprintf("Uploads By %s", $user['display_name'] );
     else:
-        echo "Displaying All Uploads";
+        echo "All Uploads";
     endif;
     ?>
     </h1>
