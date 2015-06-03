@@ -21,7 +21,7 @@ function getFile($id)
 {
   global $db;
   $query = "
-  SELECT * FROM files
+  SELECT *, date(file_created) as dateString FROM files
   WHERE file_id = ?
   ";
   

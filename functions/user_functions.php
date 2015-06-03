@@ -40,9 +40,19 @@ function updateUserLoginTime($usr_id)
 	$stmt->execute(array($_SERVER['REMOTE_ADDR'], $usr_id));	
 }
 
-function changePassword()
+function changePassword($user, $password)
 {
+	global $db;
+	$query = '
+	UPDATE users SET usr_password = ? WHERE usr_id = ?
+	';
 
+	$stmt = $db->prepare($query);
+	$stmt->execute(array($password, $user['usr_id']));	
+
+	if (isset($_SESSION['user'])):
+		$_SESSION['user']['force_password_change'] = 0;
+	endif;
 }
 
 function getUserByEmail($email)
