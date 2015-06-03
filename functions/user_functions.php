@@ -52,6 +52,7 @@ function changePassword($user, $password)
 
 	if (isset($_SESSION['user'])):
 		$_SESSION['user']['force_password_change'] = 0;
+		$_SESSION['user']['password'] = $password;
 	endif;
 }
 

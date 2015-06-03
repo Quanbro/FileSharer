@@ -2,6 +2,47 @@
 
 include 'functions/functions.php';
 
+if (empty($_SESSION['user'])) :
+    header('Location: login.php');
+    die;
+endif;
+
+$user = $_SESSION['user'];
+$old_password = $user['usr_password'];
+
+//if the form has been submitted with method = "post"
+if (!empty($_POST)):
+  if (empty($_POST['new_password_1'])) :
+    $errors[] = "Please enter your new password.";
+  endif;
+
+  if (empty($_POST['new_password_2'])) :
+    $errors[] = "Please enter your new password again.";
+  endif;  
+
+  if ($_POST['new_password_1'] != $_POST['new_password_2']):
+    $errors[] = "Passwords must match";
+  endif;
+
+  // if there are no errors
+  if (empty($errors)) :
+    $check_password = check_password_correct($user['usr_email'], $_POST['old_password']);
+    if ($check_password) :
+      changePassword($user, $_POST['new_password_1']);
+
+      header('Location: index.php');
+      die;
+    else :
+        $errors[] = "Your old password is incorrect.";
+    endif;
+    
+
+  else :
+    //There must be an error. Set the variables to maintain sticky form.
+    //$email = $_POST['email'];
+    //$password = $_POST['password'];
+  endif;    
+endif;
 ?>
 
 <html>
