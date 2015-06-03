@@ -72,6 +72,22 @@ function getUserByEmail($email)
   return $user;
 }
 
+function getUserByID($id)
+{
+  global $db;
+  $query = "
+  SELECT * FROM users 
+  WHERE usr_id = ?
+  ";
+  
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($id));
+  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  //$password = secure_password($password);
+
+  return $user;
+}
+
 /**
  * Check if the password given corresponds with an email address
  * 

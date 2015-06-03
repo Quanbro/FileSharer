@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2015 at 04:31 PM
+-- Generation Time: Jun 03, 2015 at 07:55 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `downloads` (
   `file_id` int(11) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `downloads`
@@ -45,7 +45,10 @@ INSERT INTO `downloads` (`id`, `usr_id`, `file_id`, `ip`, `time`) VALUES
 (2, 1, 1, '::1', '2015-06-03 10:08:14'),
 (3, 1, 1, '::1', '2015-06-03 10:13:22'),
 (4, 1, 1, '::1', '2015-06-03 10:13:31'),
-(5, 1, 1, '::1', '2015-06-03 10:23:37');
+(5, 1, 1, '::1', '2015-06-03 10:23:37'),
+(6, 1, 1, '::1', '2015-06-03 10:35:01'),
+(7, 1, 1, '::1', '2015-06-03 11:38:07'),
+(8, 1, 1, '::1', '2015-06-03 13:45:28');
 
 -- --------------------------------------------------------
 
@@ -57,6 +60,8 @@ CREATE TABLE IF NOT EXISTS `files` (
   `file_id` int(11) NOT NULL,
   `file_name` varchar(255) NOT NULL,
   `file_descr` text NOT NULL,
+  `usr_id` int(11) NOT NULL,
+  `size` int(11) NOT NULL,
   `file_created` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -64,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `files` (
 -- Dumping data for table `files`
 --
 
-INSERT INTO `files` (`file_id`, `file_name`, `file_descr`, `file_created`) VALUES
-(1, 'test', 'test2', '2015-06-25 00:00:00');
+INSERT INTO `files` (`file_id`, `file_name`, `file_descr`, `usr_id`, `size`, `file_created`) VALUES
+(1, 'CACP Resolution 2006-06.pdf', '', 1, 0, '2015-06-25 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -78,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `logins` (
   `usr_id` int(11) NOT NULL,
   `ip` varchar(255) NOT NULL,
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logins`
@@ -90,7 +95,10 @@ INSERT INTO `logins` (`id`, `usr_id`, `ip`, `time`) VALUES
 (3, 1234, '::1', '2015-06-03 09:39:01'),
 (4, 1, '::1', '2015-06-03 09:39:43'),
 (5, 1, '::1', '2015-06-03 09:50:35'),
-(6, 1, '::1', '2015-06-03 10:26:17');
+(6, 1, '::1', '2015-06-03 10:26:17'),
+(7, 1, '::1', '2015-06-03 10:34:59'),
+(8, 1, '::1', '2015-06-03 11:06:03'),
+(9, 1, '::1', '2015-06-03 13:26:57');
 
 -- --------------------------------------------------------
 
@@ -101,10 +109,12 @@ INSERT INTO `logins` (`id`, `usr_id`, `ip`, `time`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `usr_id` int(11) NOT NULL,
   `usr_email` text NOT NULL,
+  `display_name` text NOT NULL,
   `usr_password` text NOT NULL,
   `usr_last_login` datetime NOT NULL,
   `usr_last_ip` varchar(255) NOT NULL,
   `usr_disabled` int(11) NOT NULL DEFAULT '0',
+  `admin` int(11) NOT NULL DEFAULT '0',
   `force_password_change` int(11) NOT NULL DEFAULT '1',
   `usr_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -113,8 +123,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`usr_id`, `usr_email`, `usr_password`, `usr_last_login`, `usr_last_ip`, `usr_disabled`, `force_password_change`, `usr_created`) VALUES
-(1, 'scottmo@e-crime.on.ca', '1234', '2015-06-03 10:26:17', '::1', 0, 1, '2015-06-03 09:02:28');
+INSERT INTO `users` (`usr_id`, `usr_email`, `display_name`, `usr_password`, `usr_last_login`, `usr_last_ip`, `usr_disabled`, `admin`, `force_password_change`, `usr_created`) VALUES
+(1, 'scottmo@e-crime.on.ca', 'Scott', '1', '2015-06-03 13:26:57', '::1', 0, 0, 0, '2015-06-03 09:02:28');
 
 --
 -- Indexes for dumped tables
@@ -152,7 +162,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `files`
 --
@@ -162,7 +172,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `logins`
 --
 ALTER TABLE `logins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users`
 --

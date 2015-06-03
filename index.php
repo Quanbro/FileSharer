@@ -2,7 +2,14 @@
 
 include 'functions/functions.php';
 
-$files = getFiles();
+$displayUsersUploads = false;
+
+if (!isset($_GET['usr_id'])):
+    $files = getFiles();
+else:
+    $files = getFilesByUser($_GET['usr_id']);
+    $displayUsersUploads = true;
+endif;
 
 ?>
 
@@ -52,7 +59,7 @@ $files = getFiles();
 	  </div>
 	  <div id="navbar" class="navbar-collapse collapse">
 	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="#">Home</a></li>
+	      <li class="active"><a href="index.php">Home</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
 	      <li><a href="./logout.php">Log Out</a></li>
@@ -70,7 +77,16 @@ $files = getFiles();
    		</div>
     </div>
     -->
-
+    <h1>
+    <?php
+    if ($displayUsersUploads):
+        $user = getUserByID($_GET['usr_id']);
+        echo sprintf("Displaying Uploads By %s", $user['display_name'] );
+    else:
+        echo "Displaying All Uploads";
+    endif;
+    ?>
+    </h1>
     <div style="padding-top:10px">
 
         <table id="files" class="table dataTable table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"  width="100%">
@@ -81,7 +97,7 @@ $files = getFiles();
 
 	                <th>File Name</th>
 	                <th>File Description</th>
-	                <th>File Created</th>
+	                <th>Date Uploaded</th>
 	                <th>Uploaded By</th>
 
 	            </tr>
@@ -102,7 +118,14 @@ $files = getFiles();
 
                 	<td><?php echo $file['dateString']?></td>
 
-                	<td>Vern</td>
+                	<td>
+                    <?php 
+                        $user = getUserByID($file['usr_id']);
+                        if (isset($user)):
+                            echo '<a href = "index.php?usr_id='.$file['usr_id'].'">'.$user['display_name'];
+                        endif;
+                    ?>
+                    </td>
                 </tr>
 
 

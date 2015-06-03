@@ -9,12 +9,28 @@ function getFiles()
   $stmt = $db->prepare($query);
   $stmt->execute();
 
-  $registrations = array();
+  $files = array();
   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $registrations[] = $row;
+    $files[] = $row;
   }
 
-  return $registrations;  
+  return $files;  
+}
+function getFilesByUser($usr_id)
+{
+  global $db;
+  $query = "
+    SELECT *, date(file_created) as dateString FROM files WHERE usr_id = ?
+  ";
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($usr_id));
+
+  $files = array();
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $files[] = $row;
+  }
+
+  return $files;  
 }
 
 function getFile($id)
