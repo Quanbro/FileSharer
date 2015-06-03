@@ -16,7 +16,7 @@ $files = getFiles();
 
         <link rel="stylesheet" href="css/bootstrap.css">
 
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -30,13 +30,48 @@ $files = getFiles();
 
     </head>
 
+
+
+    <div class="container">
+
+   	<div style="padding:10px;">
+    	<img src="images/logo.png">
+    </div>
+
+	<!-- Static navbar -->
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">Downloads</a>
+	  </div>
+	  <div id="navbar" class="navbar-collapse collapse">
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="#">Home</a></li>
+	    </ul>
+	    <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
+	      <li><a href="./logout.php">Log Out</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div><!--/.container-fluid -->
+	</nav>
+
+	<!--
     <body>
-    <div class="container pull-right">
+
+    <div class="pull-right">
         <div class="logout pull-right">
     		<button type="button" class="btn btn-default">Log Out</button>
    		</div>
     </div>
+    -->
 
+    <div style="padding-top:10px">
 
         <table id="files" class="table dataTable table-striped table-bordered" cellpadding="0" cellspacing="0" border="0"  width="100%">
 
@@ -61,7 +96,7 @@ $files = getFiles();
             ?>
 
                 <tr>
-                	<td><?php echo '<a href = "/uploads/'.$file['file_name'].'">'.$file['file_name']?></a></td>
+                	<td><?php echo '<a href = "./downloadFile.php?file_id='.$file['file_id'].'">'.$file['file_name']?></a></td>
 
                 	<td><?php echo $file['file_descr']?></td>
 
@@ -81,7 +116,8 @@ $files = getFiles();
 
 
         </table>
-
+    </div>    
+    </div>
         <script type="text/javascript">
 
             $(document).ready(function() {
@@ -125,14 +161,6 @@ $files = getFiles();
 
 
             } );
-
-
-
-
-
-
-
-
 
         </script>
 
