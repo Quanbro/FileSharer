@@ -29,6 +29,7 @@ if (!empty($_POST)):
     $check_password = check_password_correct($user['usr_email'], $_POST['old_password']);
     if ($check_password) :
       changePassword($user, $_POST['new_password_1']);
+  
 
       header('Location: index.php');
       die;
