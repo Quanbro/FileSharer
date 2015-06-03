@@ -10,7 +10,7 @@ $files = getFiles();
 
     <head>
 
-        <title>VERN</title>
+        <title><?php echo $title; ?></title>
 
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -100,7 +100,7 @@ $files = getFiles();
 
                 	<td><?php echo $file['file_descr']?></td>
 
-                	<td><?php echo $file['file_created']?></td>
+                	<td><?php echo $file['dateString']?></td>
 
                 	<td>Vern</td>
                 </tr>

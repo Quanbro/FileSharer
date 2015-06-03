@@ -4,7 +4,7 @@ function getFiles()
 {
   global $db;
   $query = "
-    SELECT * FROM files
+    SELECT *, date(file_created) as dateString  FROM files
   ";
   $stmt = $db->prepare($query);
   $stmt->execute();
