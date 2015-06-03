@@ -55,7 +55,7 @@ $files = getFiles();
 	      <li class="active"><a href="#">Home</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
-	      <li><a href="#logout">Log Out</a></li>
+	      <li><a href="./logout.php">Log Out</a></li>
 	    </ul>
 	  </div><!--/.nav-collapse -->
 	</div><!--/.container-fluid -->
