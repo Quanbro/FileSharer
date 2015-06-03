@@ -48,13 +48,13 @@ endif;
 
     <head>
 
-        <title>VERN</title>
+        <title><?php echo $title;?></title>
 
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
         <link rel="stylesheet" href="css/bootstrap.css">
 
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -69,13 +69,52 @@ endif;
     </head>
 
     <body>
-        <?php include 'partials/messages.php'; ?>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method = "post">
-            Email: <input type = "text" name = "email" />
-            Password: <input type = "password" name = "password" />
-            <input type = "submit" value = "Login" />
-        </form>
+        <div class=container>
+
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">   
+
+          <div class="text-center" style="padding-bottom: 15px;">
+              <img src="./images/logo_big.png" align= "middle">
+          </div>
+
+          
+          <div class="panel panel-info" >
+
+            <div class="panel-heading">
+                <div class="panel-title">Sign In</div>
+                <!--<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>-->
+            </div>
+
+            <div style="padding-top:30px" class="panel-body" >
+
+              <?php include 'partials/messages.php'; ?>
+              
+
+              <form class="form-group" action="<?php echo $_SERVER['PHP_SELF'];?>" method = "post">
+
+                <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="Email">                                        
+                </div>
+                    
+                <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="Password">
+                </div>                
+
+                <!--Email: <input type = "text" name = "email" class="form-control"/>
+                Password: <input type = "password" name = "password" class="form-control"/>
+                -->
+                <input type = "submit" value = "Login" class="btn btn-default"/>
+
+              </form>
+
+            </div>
+          </div>
+
+          </div>
+        </div>
 
 
     </body>

@@ -34,7 +34,7 @@ $files = getFiles();
 
     <div class="container">
 
-   	<div style="padding:10px;">
+   	<div class="text-center" style="padding:10px;">
     	<img src="images/logo.png">
     </div>
 

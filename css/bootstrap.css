@@ -216,7 +216,13 @@ table {
 
 .logout {padding-bottom: 10px; }
 
+.horizontal-center {
+  min-width: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-width: 100vh; /* These two lines are counted as one :-)       */
 
+  display: flex;
+  align-items: center;
+}
 
 
 
@@ -6019,13 +6025,13 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 
 .panel-info {
-  border-color: #bce8f1;
+  border-color: #333333;
 }
 
 .panel-info > .panel-heading {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  color: #FFFFFF;
+  background-color: #333333;
+  border-color: #FFDC3D;
 }
 
 .panel-info > .panel-heading + .panel-collapse .panel-body {
