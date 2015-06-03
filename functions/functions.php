@@ -2,7 +2,7 @@
 
 session_start();
 
-include 'config.php';
+require 'config.php';
 
 require 'locales/en.php';
 

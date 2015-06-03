@@ -14,9 +14,9 @@ function validateEmail($email, $errors)
 
 function validatePassword($password, $errors)
 {
-	global $min_password_length;
-	global $password_has_capitals;
-	global $password_has_numbers;
+	$min_password_length = 8;
+	$password_has_capitals = true;
+	$password_has_numbers = true;
 
 	if (strlen($password) < $min_password_length):
 		$errors[] = sprintf("Password must be at least %s characters long.", $min_password_length);
