@@ -14,3 +14,4 @@ require 'user_functions.php';
 require 'download_functions.php';
 require 'security_functions.php';
 require 'validation_functions.php';
+require 'redirect_functions.php';

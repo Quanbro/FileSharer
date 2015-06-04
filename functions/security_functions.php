@@ -2,6 +2,7 @@
 
 function requireAdmin()
 {
+	requireLogin();
 	if (isset($_SESSION['user'])):
 		if ($_SESSION['user']['admin'] != 1):
 			header('Location: index.php');
@@ -17,6 +18,9 @@ function requireAdmin()
 **/
 function requireLogin()
 {
+
+	$_SESSION['redirectUrl'] = $_SERVER['REQUEST_URI'];
+
 	if (empty($_SESSION['id'])) :
 		header('Location: login.php');
 		die;

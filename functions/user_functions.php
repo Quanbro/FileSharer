@@ -22,6 +22,8 @@ function loginUser($user)
 	updateUserLoginTime($usr_id);
 	$_SESSION['id'] = $usr_id;
 	$_SESSION['user'] = $user;
+	goToRedirect();
+	removeRedirect();
 }
 
 function recordLogin($usr_id)
