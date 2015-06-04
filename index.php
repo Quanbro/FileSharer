@@ -1,6 +1,7 @@
 <?php
 
 include 'functions/functions.php';
+requireLogin();
 
 $displayUsersUploads = false;
 

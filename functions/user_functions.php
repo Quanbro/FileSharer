@@ -12,7 +12,7 @@ function addUser($email, $password, $displayName, $force_password_change)
 	';
 
 	$stmt = $db->prepare($query);
-	$stmt->execute(array($email, $displayName, $password,  $force_password_change));
+	$stmt->execute(array($email, $displayName, md5($password),  $force_password_change));
 }
 
 function loginUser($user)
@@ -58,7 +58,7 @@ function changePassword($user, $password)
 	';
 
 	$stmt = $db->prepare($query);
-	$stmt->execute(array($password, $user['usr_id']));	
+	$stmt->execute(array(md5($password), $user['usr_id']));	
 
 	if (isset($_SESSION['user'])):
 		$_SESSION['user']['force_password_change'] = 0;
@@ -116,32 +116,15 @@ function check_password_correct($email, $password){
   $stmt = $db->prepare($query);
   $stmt->execute(array($email));
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
-  //$password = secure_password($password);
 
-  return $password == $user['usr_password'];
+  return md5($password) == $user['usr_password'];
 }
 
 function setUserStatus()
 {
 	
 }
-/**
-* Ensure a user is currently logged in my checking the value of the 
-**/
-function requireLogin()
-{
-	if (empty($_SESSION['id'])) :
-		header('Location: login.php');
-		die;
-	endif;
 
-	$user = $_SESSION['user'];
-
-	if ($user['force_password_change'] == 1):
-		header('Location: changePassword.php');
-		die;
-	endif;
-}
 
 /**
  * Check if user exists in database
