@@ -3,7 +3,6 @@
 function recordDownload($user, $file)
 {
 	global $db;
-	global $db;
 
 	$query = '
 	INSERT INTO downloads

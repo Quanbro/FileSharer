@@ -8,6 +8,8 @@
 
         <link rel="stylesheet" href="css/bootstrap.css">
 
+        <link rel="stylesheet" href="css/footer.css">
+
         <!--<link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

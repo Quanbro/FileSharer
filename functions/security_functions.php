@@ -1,5 +1,9 @@
 <?php
 
+/**
+* Require the admin status of the currently logged in user to be set to 1. 
+*
+**/
 function requireAdmin()
 {
 	requireLogin();
@@ -14,7 +18,7 @@ function requireAdmin()
 
 
 /**
-* 
+* Require the
 **/
 function requireLogin()
 {

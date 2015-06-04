@@ -56,7 +56,7 @@ function changePassword($user, $password)
 {
 	global $db;
 	$query = '
-	UPDATE users SET usr_password = ? WHERE usr_id = ?
+	UPDATE users SET usr_password = ?, force_password_change = 0 WHERE usr_id = ?
 	';
 
 	$stmt = $db->prepare($query);

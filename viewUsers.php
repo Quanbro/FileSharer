@@ -1,5 +1,6 @@
 <?php
 require 'functions/functions.php';
+requireLogin();
 $users = getUsers();
 ?>
 
