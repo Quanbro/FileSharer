@@ -4,7 +4,7 @@ function getFiles()
 {
   global $db;
   $query = "
-    SELECT *, date(file_created) as dateString  FROM files
+    SELECT *, date(file_created) as dateString FROM files
   ";
   $stmt = $db->prepare($query);
   $stmt->execute();
@@ -64,9 +64,19 @@ function fileExists($file_id){
 
 }
 
-function addFile()
+function addFile($file_name, $usr_id, $description, $size)
 {
-  //INSERT INTO files
+  global $db;
+
+  $query = '
+  INSERT INTO files
+  (file_name, usr_id, file_descr, size)
+  VALUES
+  (?, ?, ?, ?)
+  ';
+
+  $stmt = $db->prepare($query);
+  $stmt->execute(array($file_name, $usr_id, $description, $size));
 }
 
 function setFileStatus($file)
@@ -75,11 +85,6 @@ function setFileStatus($file)
 }
 
 function updateFileDetails()
-{
-
-}
-
-function getFileMD5()
 {
 
 }

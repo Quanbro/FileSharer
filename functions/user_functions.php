@@ -79,7 +79,6 @@ function getUserByEmail($email)
   $stmt = $db->prepare($query);
   $stmt->execute(array($email));
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
-  //$password = secure_password($password);
 
   return $user;
 }
@@ -95,7 +94,6 @@ function getUserByID($id)
   $stmt = $db->prepare($query);
   $stmt->execute(array($id));
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
-  //$password = secure_password($password);
 
   return $user;
 }
@@ -122,12 +120,6 @@ function check_password_correct($email, $password){
   return md5($password) == $user['usr_password'];
 }
 
-function setUserStatus()
-{
-	
-}
-
-
 /**
  * Check if user exists in database
  * 
@@ -144,12 +136,27 @@ function user_exists($email){
    
   $stmt = $db->prepare($query);
   $stmt->execute(array($email));
-  //returns first row
+
   $row = $stmt->fetch();
   return $row[0] > 0;
-
 }
 
+function getUsers()
+{
+  global $db;
+  $query = "
+    SELECT * FROM users
+  ";
+  $stmt = $db->prepare($query);
+  $stmt->execute();
+
+  $users = array();
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $users[] = $row;
+  }
+
+  return $users;  
+}
 
 
 
