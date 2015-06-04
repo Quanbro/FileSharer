@@ -145,7 +145,7 @@ function getUsers()
 {
   global $db;
   $query = "
-    SELECT * FROM users
+    SELECT *, (select count(*) from files where usr_id = users.usr_id) as 'upload_count' FROM users
   ";
   $stmt = $db->prepare($query);
   $stmt->execute();
